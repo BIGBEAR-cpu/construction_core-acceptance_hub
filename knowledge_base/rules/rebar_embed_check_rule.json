@@ -1,0 +1,14 @@
+{
+  "rule_id": "REV-REBAR-001",
+  "title": "Rebar/Embed Basic Presence Check",
+  "discipline": "structure",
+  "description": "Sample review rule ensuring rebar or embed element candidates exist.",
+  "check_logic": "if no rebar/embed candidates then warning",
+  "inputs": ["elements"],
+  "source_citation": {
+    "source_name": "P0 Sample Knowledge Base",
+    "location": "internal-demo",
+    "note": "Illustrative review rule"
+  },
+  "version": "0.1.0"
+}

@@ -1,0 +1,14 @@
+{
+  "rule_id": "QTY-CONC-001",
+  "title": "Concrete Volume for Rectangular Member",
+  "discipline": "structure",
+  "description": "Sample rule to estimate concrete volume by L*W*H.",
+  "formula": "length * width * height",
+  "inputs": ["length", "width", "height"],
+  "source_citation": {
+    "source_name": "P0 Sample Knowledge Base",
+    "location": "internal-demo",
+    "note": "Not a full specification library"
+  },
+  "version": "0.1.0"
+}
