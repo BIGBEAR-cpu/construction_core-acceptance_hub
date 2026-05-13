@@ -1,0 +1,121 @@
+{
+  "package_id": "pkg_mock_deep_excavation_001",
+  "project_info": {
+    "project_id": "proj_mock_001",
+    "project_name": "深基坑超危大工程 mock 样例",
+    "location": "mock_city_zone_a",
+    "contractor": "mock_contractor_co",
+    "work_type": "deep_excavation",
+    "created_at": "2026-05-13T00:00:00Z",
+    "metadata": {"is_mock": true, "note": "sample only"}
+  },
+  "dangerous_work": {
+    "work_type": "deep_excavation",
+    "is_dangerous": true,
+    "is_super_dangerous": true,
+    "trigger_reason": "mock trigger: sample threshold exceeded",
+    "threshold_rule_ref": "MOCK_RULE_DEEP_EXCAVATION_001",
+    "required_documents": ["safety_plan"],
+    "required_calculations": ["support_stability_check"],
+    "required_drawings": ["support_layout_drawing"]
+  },
+  "source_citations": [
+    {"citation_id": "sc_001", "source_type": "mock_spec", "source_name": "Mock Safety Spec", "source_location": "mock://spec/1", "quoted_text": "mock citation text A", "is_mock": true},
+    {"citation_id": "sc_002", "source_type": "mock_manual", "source_name": "Mock Method Manual", "source_location": "mock://manual/1", "quoted_text": "mock citation text B", "is_mock": true}
+  ],
+  "evidence_links": [
+    {"evidence_id": "ev_001", "related_output_id": "calc_001", "source_type": "mock_sensor", "source_name": "Mock Input Sheet", "source_location": "mock://input/1", "confidence": 0.91, "note": "mock evidence", "is_mock": true},
+    {"evidence_id": "ev_002", "related_output_id": "drawing_001", "source_type": "mock_drawing", "source_name": "Mock Draft", "source_location": "mock://drawing/1", "confidence": 0.88, "note": "mock evidence", "is_mock": true},
+    {"evidence_id": "ev_003", "related_output_id": "quantity_001", "source_type": "mock_quantity", "source_name": "Mock Quantity Source", "source_location": "mock://quantity/1", "confidence": 0.86, "note": "mock evidence", "is_mock": true}
+  ],
+  "calculations": [
+    {
+      "calc_id": "calc_001",
+      "project_id": "proj_mock_001",
+      "calc_type": "support_stability_check",
+      "input_parameters": {"mock_depth": 12.5, "mock_factor": 1.2},
+      "formula_refs": ["MOCK_FORMULA_SUPPORT_01"],
+      "intermediate_steps": [{"step": "mock_step_1", "value": 15.0}],
+      "final_result": {"mock_result": 18.0, "unit": "mock_unit"},
+      "pass_fail": "pass",
+      "warnings": [],
+      "evidence_ids": ["ev_001"]
+    }
+  ],
+  "drawings": [
+    {
+      "drawing_id": "drawing_001",
+      "project_id": "proj_mock_001",
+      "drawing_type": "support_layout_drawing",
+      "file_path": "data/samples/generated_files/README.md",
+      "validation_status": "not_checked",
+      "layer_summary": {"mock_layer_a": 3},
+      "related_calculation_ids": ["calc_001"],
+      "evidence_ids": ["ev_002"]
+    }
+  ],
+  "quantities": [
+    {
+      "quantity_id": "quantity_001",
+      "project_id": "proj_mock_001",
+      "source_element_id": "elem_mock_001",
+      "item_name": "mock_steel_support",
+      "unit": "t",
+      "expression": "mock_expression_steel",
+      "value": 12.3,
+      "rule_ref": "MOCK_RULE_QTY_001",
+      "quota_suggestion": "mock_quota_A",
+      "need_review": false,
+      "evidence_ids": ["ev_003"]
+    },
+    {
+      "quantity_id": "quantity_002",
+      "project_id": "proj_mock_001",
+      "source_element_id": "elem_mock_002",
+      "item_name": "mock_concrete",
+      "unit": "m3",
+      "expression": "mock_expression_concrete",
+      "value": null,
+      "rule_ref": "",
+      "quota_suggestion": "mock_quota_B",
+      "need_review": true,
+      "evidence_ids": []
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "doc_001",
+      "project_id": "proj_mock_001",
+      "document_type": "safety_plan",
+      "file_path": "data/samples/generated_files/README.md",
+      "section_summaries": ["mock section summary"],
+      "source_citation_ids": ["sc_001", "sc_002"],
+      "linked_calculation_ids": ["calc_001"],
+      "linked_drawing_ids": ["drawing_001"],
+      "linked_quantity_ids": ["quantity_001", "quantity_002"],
+      "review_status": "reviewed",
+      "evidence_ids": ["ev_001"]
+    }
+  ],
+  "review_issues": [
+    {
+      "issue_id": "issue_001",
+      "severity": "warning",
+      "category": "completeness",
+      "message": "mock issue for sample warning",
+      "related_artifact_id": "quantity_002",
+      "suggestion": "manual review recommended",
+      "status": "open"
+    }
+  ],
+  "generated_files": [
+    {
+      "file_id": "gf_001",
+      "artifact_type": "document",
+      "file_path": "data/samples/generated_files/README.md",
+      "description": "mock generated file placeholder",
+      "required": true
+    }
+  ],
+  "metadata": {"is_mock": true, "sample": true}
+}

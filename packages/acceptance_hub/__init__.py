@@ -1,0 +1,1 @@
+"""Acceptance hub package."""

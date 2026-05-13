@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExportPackage (mock schema)",
+  "type": "object",
+  "required": ["package_id", "project_info", "dangerous_work"],
+  "description": "Mock/sample schema for AI Construction Detailing Engine export package."
+}
