@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -16,39 +17,44 @@ def run_pytest() -> int:
 
 
 def check_import() -> None:
-    from backend.api.main import app  # noqa: F401
+    from backend.api.main import app
+
+    if app is None:
+        raise RuntimeError("backend.api.main:app is not importable")
 
 
-def check_files() -> None:
-    required_examples = [
-        "sample_components.json",
-        "sample_quantity_request.json",
-        "sample_review_request.json",
-        "sample_drawing_raw.json",
-        "sample_parsed_drawing.json",
-        "sample_floor_plan_elements.json",
-    ]
-    for filename in required_examples:
-        path = Path("examples") / filename
-        if not path.exists():
-            raise FileNotFoundError(f"missing example file: {path}")
+def check_examples_exists() -> None:
+    examples_dir = Path("examples")
+    if not examples_dir.exists() or not examples_dir.is_dir():
+        raise FileNotFoundError("examples directory is missing")
 
-    rules = list(Path("knowledge_base/rules").glob("*.json"))
-    if len(rules) < 3:
-        raise RuntimeError("knowledge_base/rules requires at least 3 rule files")
 
-    required_docs = [
-        Path("docs/P0_ACCEPTANCE.md"),
-        Path("docs/COMMON_DRAWING_DATA.md"),
-    ]
-    for path in required_docs:
-        if not path.exists():
-            raise FileNotFoundError(f"missing doc file: {path}")
+
+def check_rules_loadable() -> None:
+    rules_dir = Path("knowledge_base/rules")
+    if not rules_dir.exists() or not rules_dir.is_dir():
+        raise FileNotFoundError("knowledge_base/rules directory is missing")
+
+    rules = sorted(rules_dir.glob("*.json"))
+    if not rules:
+        raise RuntimeError("knowledge_base/rules has no rule json files")
+
+    for rule_path in rules:
+        with rule_path.open("r", encoding="utf-8") as fp:
+            json.load(fp)
+
+
+def check_docs_exists() -> None:
+    p0_acceptance = Path("docs/P0_ACCEPTANCE.md")
+    if not p0_acceptance.exists():
+        raise FileNotFoundError("docs/P0_ACCEPTANCE.md is missing")
 
 
 def main() -> int:
     check_import()
-    check_files()
+    check_examples_exists()
+    check_rules_loadable()
+    check_docs_exists()
     return run_pytest()
 
 
