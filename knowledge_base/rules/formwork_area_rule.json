@@ -1,0 +1,14 @@
+{
+  "rule_id": "QTY-FORM-001",
+  "title": "Formwork Area for Wall",
+  "discipline": "civil",
+  "description": "Sample formwork quantity rule with simplified side area.",
+  "formula": "2 * height * length",
+  "inputs": ["height", "length"],
+  "source_citation": {
+    "source_name": "P0 Sample Knowledge Base",
+    "location": "internal-demo",
+    "note": "Illustrative only"
+  },
+  "version": "0.1.0"
+}
